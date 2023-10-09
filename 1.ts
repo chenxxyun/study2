@@ -22,6 +22,7 @@ console.log(greet(suits));
 console.log(greet(suits));
 console.log(greet(suits));
 console.log('这是修改');
+console.log('fenzhixiugai');
 
 console.log(greet(suits));
 console.log(greet(suits));
