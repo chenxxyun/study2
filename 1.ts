@@ -13,3 +13,6 @@ function greet(person: unknown): unknown {
 }
 console.log(greet(suits[0]));
 console.log(greet(suits));
+console.log(greet(suits));
+console.log(greet(suits));
+console.log(greet(suits));
