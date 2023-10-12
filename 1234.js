@@ -25,21 +25,18 @@ const setMap = () => {
     // 生成 htmlWebpackPlugins
     htmlWebpackPlugins.push(
       new HtmlWebpackPlugins({
-        template: "./src/index.html",  // 模板是哪个html文件
-        filename: `page/${pageName}/index.html`,  // 打包后生成的html文件名称
-        inject: "body",  // js文件的位置，这里放入了body标签中
-        // template: `./src/index.html`,
-        // filename: `/page/${pageName}/index.html`,
-        // inject: "body",
-        // chunks: [pageName]
+        template: `./src/${pageName}/index.html`,
+        filename: `/page/${pageName}/index.html`,
+        inject: "body",
+        chunks: [pageName]
       }))
     // 生成 MiniCssExtractPlugin
-    cssWebpackPlugins.push(
-      new MiniCssExtractPlugin({
-        filename: `css/${pageName}.css`
-        // 输出的css文件名不变的意思
-      }),
-    )
+    // cssWebpackPlugins.push(
+    //   new MiniCssExtractPlugin({
+    //     filename: `css/${pageName}.css`
+    //     // 输出的css文件名不变的意思
+    //   }),
+    // )
   })
 
   return {
@@ -131,17 +128,17 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
 
-    // new HtmlWebpackPlugins({
+    // new HtmlWebpackPlugin({
     //   template: "./src/index.html",  // 模板是哪个html文件
     //   filename: "index.html",  // 打包后生成的html文件名称
     //   inject: "body",  // js文件的位置，这里放入了body标签中
     // }),
     ...htmlWebpackPlugins,
-    ...cssWebpackPlugins
-    // new MiniCssExtractPlugin({
-    //     filename: 'css/[name].css'
-    //     // 输出的css文件名不变的意思
-    //   }),
+    // ...cssWebpackPlugins
+    new MiniCssExtractPlugin({
+        filename: 'css/[name].css'
+        // 输出的css文件名不变的意思
+      }),
       
   ],
 

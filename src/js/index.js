@@ -3,8 +3,9 @@ import '../css/home.css';
 
 import jpgmap from '../assets/1.jpg';
 import imgsrc from '../assets/img-2.png';
-import home from './home/home.js';
+
+// import home from '../home/homeabc/index.js';
 
 console.log(imgsrc,jpgmap);
-home()
+// home()
 console.log(123456);
