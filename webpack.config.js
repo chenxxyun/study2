@@ -25,9 +25,10 @@ const setMap = () => {
     // 生成 htmlWebpackPlugins
     htmlWebpackPlugins.push(
       new HtmlWebpackPlugins({
-        template: "./src/index.html",  // 模板是哪个html文件
-        filename: `page/${pageName}/index.html`,  // 打包后生成的html文件名称
+        template: `./src/${pageName}/index.html`,  // 模板是哪个html文件
+        filename: `${pageName}.html`,  // 打包后生成的html文件名称
         inject: "body",  // js文件的位置，这里放入了body标签中
+        chunks: [`js/${pageName}`]
         // template: `./src/index.html`,
         // filename: `/page/${pageName}/index.html`,
         // inject: "body",
@@ -36,7 +37,8 @@ const setMap = () => {
     // 生成 MiniCssExtractPlugin
     cssWebpackPlugins.push(
       new MiniCssExtractPlugin({
-        filename: `css/${pageName}.css`
+        filename: `css/${pageName}.css`,
+        chunkFilename: `css/${pageName}`,
         // 输出的css文件名不变的意思
       }),
     )
@@ -105,7 +107,7 @@ module.exports = {
           type: "asset/resource",
           // 只有在 asset/resource 才可以设置 generator 属性
           generator: {
-            filename: "images/[name][ext]",
+            filename: "images/[contenthash][ext]",
           },
           parser: {
             dataUrlCondition: {
@@ -137,7 +139,12 @@ module.exports = {
     //   inject: "body",  // js文件的位置，这里放入了body标签中
     // }),
     ...htmlWebpackPlugins,
-    ...cssWebpackPlugins
+    // ...cssWebpackPlugins
+    new MiniCssExtractPlugin({
+      filename: `css/[contenthash].css`,
+      chunkFilename: 'css/[id].css',
+      // 输出的css文件名不变的意思
+    }),
     // new MiniCssExtractPlugin({
     //     filename: 'css/[name].css'
     //     // 输出的css文件名不变的意思
